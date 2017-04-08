@@ -8,16 +8,16 @@ namespace PositronGames.BodyPlane
     public class SaggitalPlane : MedicalPlane
     {
 
-        // Use this for initialization
-        void Start()
-        {
+        
+            private AnatomyEnabler.BodyPlaneType m_bodyPlaneType = AnatomyEnabler.BodyPlaneType.saggital;
+            public AnatomyEnabler.BodyPlaneType bodyPlaneType { get { return m_bodyPlaneType; } }
 
-        }
+            #region ClassMethods
+            public override AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
+            {
+                return AnatomyEnabler.BodyPlaneRelation.none;
+            }
 
-        // Update is called once per frame
-        void Update()
-        {
-
+            #endregion
         }
     }
-}

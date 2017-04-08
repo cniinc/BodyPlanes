@@ -6,17 +6,15 @@ namespace PositronGames.BodyPlane
 {
     public class TransversePlane : MedicalPlane
     {
+        private AnatomyEnabler.BodyPlaneType m_bodyPlaneType = AnatomyEnabler.BodyPlaneType.transverse;
+       public AnatomyEnabler.BodyPlaneType bodyPlaneType { get { return m_bodyPlaneType; } }
 
-        // Use this for initialization
-        void Start()
+        #region ClassMethods
+        public override AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
         {
-
+            return AnatomyEnabler.BodyPlaneRelation.none;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        #endregion
     }
 }
