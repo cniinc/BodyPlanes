@@ -13,7 +13,6 @@ namespace PositronGames.BodyPlane
         {
             return AnatomyEnabler.BodyPlaneRelation.none;
         }
-
         #endregion
     }
 }
