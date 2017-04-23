@@ -13,6 +13,17 @@ namespace PositronGames.BodyPlane
         {
             return AnatomyEnabler.BodyPlaneRelation.none;
         }
+
+        public virtual void Initialize()
+        {
+            transform.localPosition = Vector3.zero;
+            alignBodyPlane();
+        }
+
+        protected virtual void alignBodyPlane()
+        {
+            Debug.LogError("BodyPlane alignment using the parent MedicalPlane function");
+        }
         #endregion
     }
 }

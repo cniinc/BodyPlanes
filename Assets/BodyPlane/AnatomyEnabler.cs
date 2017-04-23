@@ -10,6 +10,10 @@ namespace PositronGames.BodyPlane
     {
         #region Properties
 
+        [Tooltip("Find the object where the pivot is at the center of the person. That is the best object to create the planes")]
+        
+        public GameObject PlaneParent;
+
         public enum BodyPlaneType { none, saggital, coronal, transverse }
         public enum BodyPlaneRelation { none, ventral, dorsal, right, left, proximal, distal, anterior, posterior, superior, inferior, rostral, caudal }
 
@@ -26,11 +30,11 @@ namespace PositronGames.BodyPlane
 
         private void Start()
         {
-            /*
+            
             createPlane(BodyPlaneType.saggital);
             createPlane(BodyPlaneType.coronal);
             createPlane(BodyPlaneType.transverse);
-            */
+            
             
         }
 
@@ -40,23 +44,40 @@ namespace PositronGames.BodyPlane
         /// <param name="plane"></param>
         private void createPlane(BodyPlaneType plane)
         {
+            GameObject planeObject;
+
             switch (plane)
                 {
                 case BodyPlaneType.coronal:
-                    { }
+                    { planeObject = Instantiate(Resources.Load("CoronalPlane"), PlaneParent.transform) as GameObject;
+                      
+                    }
                     break;
                 case BodyPlaneType.saggital:
-                    { }
+                    {
+                        planeObject = Instantiate(Resources.Load("SaggitalPlane"), PlaneParent.transform) as GameObject;
+                    }
                     break;
 
                 case BodyPlaneType.transverse:
-                    { }
+                    {
+                        planeObject = Instantiate(Resources.Load("TransversePlane"), PlaneParent.transform) as GameObject;
+                    }
                     break;
                 default:
-                    Debug.LogError("AnatomyEnabler for " + gameObject.name + "is trying to create a non-normal plane");
+                    {
+                        planeObject = new GameObject();
+                        Debug.LogError("AnatomyEnabler for " + gameObject.name + "is trying to create a non-normal plane");
+                       
+                    }
                     break;
-
                 }
+            MedicalPlane newPlane = planeObject.GetComponent<MedicalPlane>() as MedicalPlane;
+            if (newPlane == null)
+                Debug.LogError("warning, medicalPlane script not found on the new plane. Check and make sure it's added to your plane");
+            newPlane.Initialize();
+
+
         }
 
         public BodyPlaneRelation[] RelateObjectToPlane(GameObject obj)

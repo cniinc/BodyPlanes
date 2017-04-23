@@ -18,6 +18,12 @@ namespace PositronGames.BodyPlane
                 return AnatomyEnabler.BodyPlaneRelation.none;
             }
 
-            #endregion
+            protected override void alignBodyPlane()
+            {
+            print("rotating");
+            transform.localRotation = Quaternion.FromToRotation(transform.up, transform.parent.right);
         }
+
+        #endregion
+    }
     }
