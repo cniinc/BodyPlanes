@@ -6,7 +6,7 @@ namespace PositronGames.BodyPlane
 {
     public class TransversePlane : MedicalPlane
     {
-        private AnatomyEnabler.BodyPlaneType m_bodyPlaneType = AnatomyEnabler.BodyPlaneType.transverse;
+       private AnatomyEnabler.BodyPlaneType m_bodyPlaneType = AnatomyEnabler.BodyPlaneType.transverse;
        public AnatomyEnabler.BodyPlaneType bodyPlaneType { get { return m_bodyPlaneType; } }
 
         #region ClassMethods
@@ -17,10 +17,16 @@ namespace PositronGames.BodyPlane
 
         protected override void alignBodyPlane()
         {
-            print("rotating");
             transform.localRotation = Quaternion.FromToRotation(transform.up, transform.parent.up);
+
             
         }
+        protected override void sizeBodyPlane(Collider _boundingBox)
+        {
+            transform.localScale = new Vector3(_boundingBox.bounds.size.x, .01f, _boundingBox.bounds.size.z);
+        }
+
+
 
         #endregion
     }

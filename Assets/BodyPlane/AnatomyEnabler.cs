@@ -21,6 +21,8 @@ namespace PositronGames.BodyPlane
         SaggitalPlane m_SaggPlane;
         CoronalPlane m_CoroPlane;
 
+        //Renderer m_renderer; //this model doesn't have a good visual mesh box (it's off at an angle) so we can't use this. Must think around this
+        Collider m_visualBoundingBox;
         //
         #endregion
 
@@ -30,10 +32,12 @@ namespace PositronGames.BodyPlane
 
         private void Start()
         {
-            
-            createPlane(BodyPlaneType.saggital);
-            createPlane(BodyPlaneType.coronal);
-            createPlane(BodyPlaneType.transverse);
+            //m_renderer = GetComponent<Renderer>() as Renderer;
+            m_visualBoundingBox = GetComponent<Collider>() as Collider;
+
+            m_SaggPlane = createPlane(BodyPlaneType.saggital) as SaggitalPlane;
+            m_CoroPlane = createPlane(BodyPlaneType.coronal) as CoronalPlane;
+            m_TransvPlane = createPlane(BodyPlaneType.transverse) as TransversePlane;
             
             
         }
@@ -42,7 +46,7 @@ namespace PositronGames.BodyPlane
         /// initializes and places a Medical plane according to anatomical placement
         /// </summary>
         /// <param name="plane"></param>
-        private void createPlane(BodyPlaneType plane)
+        private MedicalPlane createPlane(BodyPlaneType plane)
         {
             GameObject planeObject;
 
@@ -75,9 +79,9 @@ namespace PositronGames.BodyPlane
             MedicalPlane newPlane = planeObject.GetComponent<MedicalPlane>() as MedicalPlane;
             if (newPlane == null)
                 Debug.LogError("warning, medicalPlane script not found on the new plane. Check and make sure it's added to your plane");
-            newPlane.Initialize();
+            newPlane.Initialize(m_visualBoundingBox);
 
-
+            return newPlane;
         }
 
         public BodyPlaneRelation[] RelateObjectToPlane(GameObject obj)

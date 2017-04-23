@@ -9,19 +9,24 @@ namespace PositronGames.BodyPlane
     {
 
         
-            private AnatomyEnabler.BodyPlaneType m_bodyPlaneType = AnatomyEnabler.BodyPlaneType.saggital;
-            public AnatomyEnabler.BodyPlaneType bodyPlaneType { get { return m_bodyPlaneType; } }
+        private AnatomyEnabler.BodyPlaneType m_bodyPlaneType = AnatomyEnabler.BodyPlaneType.saggital;
+        public AnatomyEnabler.BodyPlaneType bodyPlaneType { get { return m_bodyPlaneType; } }
 
-            #region ClassMethods
-            public override AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
-            {
-                return AnatomyEnabler.BodyPlaneRelation.none;
-            }
+        #region ClassMethods
+        public override AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
+        {
+            return AnatomyEnabler.BodyPlaneRelation.none;
+        }
 
-            protected override void alignBodyPlane()
-            {
-            print("rotating");
-            transform.localRotation = Quaternion.FromToRotation(transform.up, transform.parent.right);
+        protected override void alignBodyPlane()
+        {
+        transform.localRotation = Quaternion.FromToRotation(transform.up, transform.parent.right);
+        }
+
+        protected override void sizeBodyPlane(Collider _boundingBox)
+        {
+            
+            transform.localScale = new Vector3(_boundingBox.bounds.size.y, .01f, _boundingBox.bounds.size.z);
         }
 
         #endregion

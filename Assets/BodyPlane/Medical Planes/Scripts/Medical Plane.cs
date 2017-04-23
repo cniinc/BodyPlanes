@@ -14,16 +14,20 @@ namespace PositronGames.BodyPlane
             return AnatomyEnabler.BodyPlaneRelation.none;
         }
 
-        public virtual void Initialize()
+        public virtual void Initialize(Collider VisualBounds)
         {
             transform.localPosition = Vector3.zero;
             alignBodyPlane();
+            sizeBodyPlane(VisualBounds);
         }
 
         protected virtual void alignBodyPlane()
         {
             Debug.LogError("BodyPlane alignment using the parent MedicalPlane function");
         }
+
+        protected virtual void sizeBodyPlane(Collider _boundingBox)
+        { }
         #endregion
     }
 }

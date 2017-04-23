@@ -18,9 +18,12 @@ namespace PositronGames.BodyPlane
 
         protected override void alignBodyPlane()
         {
-            print("rotating");
             transform.localRotation = Quaternion.FromToRotation(transform.up, transform.parent.forward);
-           
+        }
+
+        protected override void sizeBodyPlane(Collider _boundingBox)
+        {
+            transform.localScale = new Vector3(_boundingBox.bounds.size.z, .01f, _boundingBox.bounds.size.y);
         }
         #endregion
     }
