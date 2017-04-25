@@ -11,10 +11,12 @@ namespace PositronGames.BodyPlane
         public AnatomyEnabler.BodyPlaneType bodyPlaneType { get { return m_bodyPlaneType; } }
 
         #region ClassMethods
-        public override AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
-            {
+        public override AnatomyEnabler.BodyPlaneRelation doNaming(int aboveOrBelow)
+        {
+            if (aboveOrBelow < 0)
                 return AnatomyEnabler.BodyPlaneRelation.none;
-            }
+            else return AnatomyEnabler.BodyPlaneRelation.none;
+        }
 
         protected override void alignBodyPlane()
         {

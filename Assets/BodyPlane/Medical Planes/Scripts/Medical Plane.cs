@@ -9,11 +9,20 @@ namespace PositronGames.BodyPlane
     {
 
         #region ClassMethods
-        public virtual AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
+        public AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
         {
-            return AnatomyEnabler.BodyPlaneRelation.none;
+            Vector3 diff = objPos - transform.localPosition;
 
-            AnatomyEnabler.BodyPlaneRelation relation;
+            return AnatomyEnabler.BodyPlaneRelation.none;
+            
+            
+            //AnatomyEnabler.BodyPlaneRelation relation;
+        }
+
+        public virtual AnatomyEnabler.BodyPlaneRelation doNaming(int aboveOrBelow)
+        {
+            Debug.LogError("Warning, this is using the parent MedicalPlane");
+            return AnatomyEnabler.BodyPlaneRelation.none;
         }
 
         public virtual void Initialize(Collider VisualBounds)
