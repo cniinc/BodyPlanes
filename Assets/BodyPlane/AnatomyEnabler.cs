@@ -30,7 +30,7 @@ namespace PositronGames.BodyPlane
 
         #region ClassMethods
 
-        private void Start()
+        private void Awake()
         {
             //m_renderer = GetComponent<Renderer>() as Renderer;
             m_visualBoundingBox = GetComponent<Collider>() as Collider;
@@ -87,6 +87,7 @@ namespace PositronGames.BodyPlane
         public BodyPlaneRelation[] GetAnatomicalRelation(Vector3 point) //if we really wanted to be safe we'd return a dictionary. Maybe later. 
         {
             BodyPlaneRelation[] relationships = new BodyPlaneRelation[3];
+            
 
             relationships[0] = m_CoroPlane.RelationToPlane(point);
             relationships[1] = m_SaggPlane.RelationToPlane(point);

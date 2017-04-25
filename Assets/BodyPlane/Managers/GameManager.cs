@@ -13,18 +13,24 @@ namespace PositronGames.BodyPlane
         // Use this for initialization
         void Start()
         {
-            for (int i = 0; i < testMarkers.Length; i++)
-            {
-                AnatomyEnabler.BodyPlaneRelation[] relations = mainMan.GetAnatomicalRelation(testMarkers[i].transform.position);
-                testMarkers[i].updateRelations(relations[0], relations[1], relations[2]); 
-                
-
-            }
+            AssessMarkerPositions();
         }
 
         void Update()
         {
+            if (Input.GetKeyUp(KeyCode.G))
+                AssessMarkerPositions();
+        }
 
+        private void AssessMarkerPositions()
+        {
+            for (int i = 0; i < testMarkers.Length; i++)
+            {
+                AnatomyEnabler.BodyPlaneRelation[] relations = mainMan.GetAnatomicalRelation(testMarkers[i].transform.position);
+                testMarkers[i].updateRelations(relations[0], relations[1], relations[2]);
+
+
+            }
         }
 
         /*`
