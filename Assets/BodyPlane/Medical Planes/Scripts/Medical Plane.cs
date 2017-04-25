@@ -12,6 +12,8 @@ namespace PositronGames.BodyPlane
         public virtual AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
         {
             return AnatomyEnabler.BodyPlaneRelation.none;
+
+            AnatomyEnabler.BodyPlaneRelation relation;
         }
 
         public virtual void Initialize(Collider VisualBounds)

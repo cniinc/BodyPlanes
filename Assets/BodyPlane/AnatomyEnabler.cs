@@ -84,13 +84,13 @@ namespace PositronGames.BodyPlane
             return newPlane;
         }
 
-        public BodyPlaneRelation[] RelateObjectToPlane(GameObject obj)
+        public BodyPlaneRelation[] GetAnatomicalRelation(Vector3 point)
         {
             BodyPlaneRelation[] relationships = new BodyPlaneRelation[3];
 
-            relationships[0] = m_CoroPlane.RelationToPlane(obj.transform.position);
-            relationships[1] = m_CoroPlane.RelationToPlane(obj.transform.position);
-            relationships[2] = m_CoroPlane.RelationToPlane(obj.transform.position);
+            relationships[0] = m_CoroPlane.RelationToPlane(point);
+            relationships[1] = m_SaggPlane.RelationToPlane(point);
+            relationships[2] = m_TransvPlane.RelationToPlane(point);
             return relationships;
         }
 
