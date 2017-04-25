@@ -7,7 +7,7 @@ namespace PositronGames.BodyPlane
     public class GameManager : MonoBehaviour
     {
 
-        public GameObject[] testMarkers;
+        public Marker[] testMarkers;
         public AnatomyEnabler mainMan;
 
         // Use this for initialization
@@ -15,7 +15,10 @@ namespace PositronGames.BodyPlane
         {
             for (int i = 0; i < testMarkers.Length; i++)
             {
-                print(mainMan.GetAnatomicalRelation(testMarkers[i].transform.position));
+                AnatomyEnabler.BodyPlaneRelation[] relations = mainMan.GetAnatomicalRelation(testMarkers[i].transform.position);
+                testMarkers[i].updateRelations(relations[0], relations[1], relations[2]); 
+                
+
             }
         }
 

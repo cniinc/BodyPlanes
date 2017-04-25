@@ -84,7 +84,7 @@ namespace PositronGames.BodyPlane
             return newPlane;
         }
 
-        public BodyPlaneRelation[] GetAnatomicalRelation(Vector3 point)
+        public BodyPlaneRelation[] GetAnatomicalRelation(Vector3 point) //if we really wanted to be safe we'd return a dictionary. Maybe later. 
         {
             BodyPlaneRelation[] relationships = new BodyPlaneRelation[3];
 

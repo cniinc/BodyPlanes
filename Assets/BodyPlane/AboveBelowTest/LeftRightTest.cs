@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+
+/// <summary>
+/// (currently tests for Up/Down, not LR) Code adapted from the LeftRight test by HigherScripting on the Unity3D forums: https://forum.unity3d.com/threads/left-right-test-function.31420/
+/// </summary>
 public class LeftRightTest : MonoBehaviour {
 	public Transform target;
 	public float dirNum;

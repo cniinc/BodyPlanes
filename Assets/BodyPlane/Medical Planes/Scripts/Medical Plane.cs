@@ -11,12 +11,31 @@ namespace PositronGames.BodyPlane
         #region ClassMethods
         public AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
         {
-            Vector3 diff = objPos - transform.localPosition;
+            Vector3 heading = objPos - transform.localPosition;
+            float dirNum = AngleDir(transform.forward, heading, transform.right);
 
-            return AnatomyEnabler.BodyPlaneRelation.none;
-            
+            return doNaming((int)dirNum);
             
             //AnatomyEnabler.BodyPlaneRelation relation;
+        }
+
+        float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)
+        {
+            Vector3 perp = Vector3.Cross(fwd, targetDir);
+            float dir = Vector3.Dot(perp, up);
+
+            if (dir > 0f)
+            {
+                return 1f;
+            }
+            else if (dir < 0f)
+            {
+                return -1f;
+            }
+            else
+            {
+                return 0f;
+            }
         }
 
         public virtual AnatomyEnabler.BodyPlaneRelation doNaming(int aboveOrBelow)

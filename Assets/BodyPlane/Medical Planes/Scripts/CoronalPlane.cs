@@ -14,8 +14,8 @@ namespace PositronGames.BodyPlane
         public override AnatomyEnabler.BodyPlaneRelation doNaming(int aboveOrBelow)
         {
             if (aboveOrBelow < 0)
-                return AnatomyEnabler.BodyPlaneRelation.none;
-            else return AnatomyEnabler.BodyPlaneRelation.none;
+                return AnatomyEnabler.BodyPlaneRelation.anterior;
+            else return AnatomyEnabler.BodyPlaneRelation.posterior;
         }
 
         protected override void alignBodyPlane()
