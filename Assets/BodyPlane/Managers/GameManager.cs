@@ -26,8 +26,9 @@ namespace PositronGames.BodyPlane
         {
             for (int i = 0; i < testMarkers.Length; i++)
             {
-                AnatomyEnabler.BodyPlaneRelation[] relations = mainMan.GetAnatomicalRelation(testMarkers[i].transform.position);
-                testMarkers[i].updateRelations(relations[0], relations[1], relations[2]);
+                
+                AnatomyEnabler.BodyPlaneRelation[] relations = mainMan.GetAnatomicalRelation(testMarkers[i].transform.position); 
+                testMarkers[i].updateRelations(relations[0], relations[1], relations[2]); 
 
 
             }
