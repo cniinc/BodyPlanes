@@ -7,16 +7,46 @@ namespace PositronGames.BodyPlane
 {
     public class MedicalPlane : MonoBehaviour
     {
+        
+
+        #region UnityMethods
+        private void Update()
+        {
+
+            
+        }
+        #endregion
 
         #region ClassMethods
-        public AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
+        /// <summary>
+        /// put point in, get relation as BodyPlaneRelation
+        /// </summary>
+        /// <param name="objPos"></param>
+        /// <returns></returns>
+        public virtual AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
         {
+            /*
+             * Not working very well. Must fix for head 
             Vector3 heading = objPos - transform.localPosition;
             float dirNum = AngleDir(transform.forward, heading, transform.right);
+            */
 
-            return doNaming((int)dirNum);
+            return doNaming(1);
             
-            //AnatomyEnabler.BodyPlaneRelation relation;
+        }
+        /// <summary>
+        ///  WARNING: transform.position.up doesn't show the right direction. Not sure why but this is not usable until we do
+        /// </summary>
+        /// <param name="fwd"></param>
+        /// <param name="targetDir"></param>
+        /// <param name="up"></param>
+        private void ShowDebugLines(Vector3 fwd, Vector3 targetDir, Vector3 up)
+        {
+            
+            Debug.DrawLine(transform.position, fwd, Color.red);
+            //Debug.DrawLine(transform.position, targetDir, Color.white);
+            Debug.DrawLine(transform.position, up, Color.blue);
+
         }
 
         float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)

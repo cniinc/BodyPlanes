@@ -18,8 +18,11 @@ namespace PositronGames.BodyPlane
         public enum BodyPlaneRelation { none, ventral, dorsal, right, left, proximal, distal, anterior, posterior, superior, inferior, rostral, caudal }
 
         TransversePlane m_TransvPlane;
+        public bool transversePlane = true;
         SaggitalPlane m_SaggPlane;
+        public bool saggitalPlane = true;
         CoronalPlane m_CoroPlane;
+        public bool coronalPlane = true;
 
         //Renderer m_renderer; //this model doesn't have a good visual mesh box (it's off at an angle) so we can't use this. Must think around this
         Collider m_visualBoundingBox;
@@ -35,8 +38,11 @@ namespace PositronGames.BodyPlane
             //m_renderer = GetComponent<Renderer>() as Renderer;
             m_visualBoundingBox = GetComponent<Collider>() as Collider;
 
+            if(saggitalPlane)
             m_SaggPlane = createPlane(BodyPlaneType.saggital) as SaggitalPlane;
+            if(coronalPlane)
             m_CoroPlane = createPlane(BodyPlaneType.coronal) as CoronalPlane;
+            if(transversePlane)
             m_TransvPlane = createPlane(BodyPlaneType.transverse) as TransversePlane;
             
             
@@ -88,9 +94,11 @@ namespace PositronGames.BodyPlane
         {
             BodyPlaneRelation[] relationships = new BodyPlaneRelation[3];
             
-
+            if(coronalPlane)
             relationships[0] = m_CoroPlane.RelationToPlane(point);
+            if(saggitalPlane)
             relationships[1] = m_SaggPlane.RelationToPlane(point);
+            if(transversePlane)
             relationships[2] = m_TransvPlane.RelationToPlane(point);
             return relationships;
         }

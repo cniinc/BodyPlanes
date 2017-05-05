@@ -10,6 +10,12 @@ namespace PositronGames.BodyPlane
        public AnatomyEnabler.BodyPlaneType bodyPlaneType { get { return m_bodyPlaneType; } }
 
         #region ClassMethods
+        public override AnatomyEnabler.BodyPlaneRelation RelationToPlane(Vector3 objPos)
+        {
+            if (objPos.y > transform.position.y)
+                return doNaming(1);
+            else return doNaming(-1);
+        }
         public override AnatomyEnabler.BodyPlaneRelation doNaming(int aboveOrBelow)
         {
             if (aboveOrBelow < 0)
@@ -20,7 +26,7 @@ namespace PositronGames.BodyPlane
         protected override void alignBodyPlane()
         {
             transform.localRotation = Quaternion.FromToRotation(transform.up, transform.parent.up);
-
+            //transform.localRotation = Quaternion.AngleAxis(90, transform.parent.up);
             
         }
         protected override void sizeBodyPlane(Collider _boundingBox)
